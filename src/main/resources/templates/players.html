@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика игроков Dota 2</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="/js/loadData.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>Статистика игроков Dota 2</h1>
+
+    <div class="input-group">
+        <label for="accountId">Account ID:</label>
+        <input type="number" id="accountId" name="accountId" placeholder="Введите ID" required>
+        <button type="button" class="load-btn" onclick="loadPlayer()">Загрузить</button>
+    </div>
+
+    <a class="export-btn" th:href="@{/api/dota/export/players}">Экспорт в Excel</a>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>Account ID</th>
+                <th>Persona Name</th>
+                <th>Real Name</th>
+                <th>Steam ID</th>
+                <th>Avatar</th>
+                <th>Profile URL</th>
+                <th>Rank Tier</th>
+                <th>Leaderboard Rank</th>
+                <th>Win</th>
+                <th>Lose</th>
+                <th>Winrate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="player : ${players}">
+                <td th:text="${player.accountId}"></td>
+                <td th:text="${player.personName}"></td>
+                <td th:text="${player.realName}"></td>
+                <td th:text="${player.steamId}"></td>
+                <td><img th:src="${player.avatarFull}" alt="Avatar" class="avatar"></td>
+                <td><a th:href="${player.profileUrl}" target="_blank">Профиль</a></td>
+                <td th:text="${player.rankTier}"></td>
+                <td th:text="${player.leaderboardRank}"></td>
+                <td th:text="${player.win}"></td>
+                <td th:text="${player.lose}"></td>
+                <td th:text="${player.winrate} + '%'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

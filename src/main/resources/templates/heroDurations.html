@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Статистика героев Dota</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <script src="/js/loadData.js" defer></script>
+</head>
+<body>
+<div class="container">
+  <h1>Статистика героев Dota</h1>
+
+  <div class="search-container">
+    <label for="heroName">Имя героя:</label>
+    <input type="text" id="heroName" placeholder="Введите имя героя">
+    <button class="load-btn" onclick="loadHeroDurations()">Загрузить данные</button>
+  </div>
+
+  <div class="summary">
+    <p><strong>Общее количество игр:</strong> <span id="totalGames">-</span></p>
+    <p><strong>Средний винрейт:</strong> <span id="averageWinRate">-</span>%</p>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+      <tr>
+        <th>Длительность (минут)</th>
+        <th>Игр сыграно</th>
+        <th>Победы</th>
+        <th>Процент побед</th>
+      </tr>
+      </thead>
+      <tbody id="heroDurationsTable">
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

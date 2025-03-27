@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список героев Dota 2</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="/js/loadData.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>Герои Dota 2</h1>
+
+    <button type="button" class="load-btn" onclick="loadHeroes()">Загрузить героев</button>
+
+    <a class="export-btn" th:href="@{/api/dota/export/heroes}">Экспорт в Excel</a>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Локальное имя</th>
+                <th>Primary Attr</th>
+                <th>Attack Type</th>
+                <th>Roles</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="hero : ${heroes}">
+                <td th:text="${hero.id}"></td>
+                <td th:text="${hero.name}"></td>
+                <td th:text="${hero.localizedName}"></td>
+                <td th:text="${hero.primaryAttr}"></td>
+                <td th:text="${hero.attackType}"></td>
+                <td th:text="${hero.roles}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
